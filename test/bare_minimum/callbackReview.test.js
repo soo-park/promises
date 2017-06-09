@@ -28,9 +28,6 @@ describe('Callback review', function() {
       pluckFirstLineFromFile(__dirname + '/../files/file_to_read.txt', function(err, firstLine) {
         expect(firstLine).to.equal('This is a file to read');
         expect(err).to.not.exist;
-
-        console.log(firstLine);
-
         done();
       });
     });
@@ -50,7 +47,7 @@ describe('Callback review', function() {
 
     it('should accept a callback as its last argument', function(done) {
       google.get('/').reply(200);
-
+      
       getStatusCode('https://google.com', function() {
         // If this asserion gets called, the callback was invoked correctly
         // Otherwise, this test will timeout after 2000ms

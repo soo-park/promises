@@ -18,7 +18,6 @@ var pluckFirstLineFromFile = function (filePath, callback) {
       console.log('fs.readFile successfully completed :)\n');
       firstLine = content.split('\n')[0];
       callback(err, firstLine);
-      console.log(firstLine);
     }
   });
   // callback(error, firstLine);
@@ -32,8 +31,19 @@ var pluckFirstLineFromFile = function (filePath, callback) {
 
 
 // This function should retrieve the status code of a GET request to `url`
-var getStatusCode = function (url) {
+var getStatusCode = function (url, callback) {
   // TODO
+
+  request.get(url, function (err, content) {
+    console.log('Example from callbackReview.js');
+    if (err) {
+      callback(err);
+      console.log('request.get failed :(\n', err);
+    } else {
+      console.log('request.get successfully completed :)\n');
+      callback(err, content.statusCode);
+    }
+  });
 };
 
 // Export these functions so we can test them and reuse them in later exercises
